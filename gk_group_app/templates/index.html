@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GK GROUPS | Textile Shop & Construction Works</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg gk-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div class="gk-logo"><span>GK</span></div>
+                GK GROUPS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#textile">TEXTILE SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#construction">CONSTRUCTION WORKS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">CONTACT US</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="gk-subtitle">Gireesh Kumar, Palakkad, Kerala</div>
+
+    <!-- Hero Banner -->
+    <section class="gk-hero">
+        <div class="container gk-hero-content">
+            <h1>Welcome to GK Groups</h1>
+            <p>
+                A trusted leader in <b>Textile</b> and <b>Construction</b> industries. We deliver quality, innovation, and reliability in every project and product. Discover our legacy of excellence in Palakkad and beyond.
+            </p>
+            <a href="#about" class="gk-hero-btn">Explore More</a>
+        </div>
+        <div class="gk-hero-img"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="gk-about" id="about">
+        <div class="gk-section-title text-center">About GK Groups</div>
+        <div class="gk-about-content">
+            <div class="gk-about-img text-center">
+                <img src="{% static 'img/founder.jpg' %}" 
+                     alt="Gireesh Kumar - Founder of GK Groups" class="img-fluid">
+                <div style="font-weight:700; font-size:1.15em; margin-top:10px;">Gireesh Kumar</div>
+                <div style="color:#888;">Founder & Owner, GK Groups</div>
+            </div>
+            <div class="gk-about-text">
+                <p>
+                    <b>GK Groups</b> is a diversified business group with a strong presence in the Textile and Construction sectors. With decades of experience, we have earned a reputation for reliability, quality, and customer satisfaction. Our textile division offers a wide range of fabrics and garments, while our construction arm delivers residential, commercial, and industrial projects with excellence.
+                </p>
+                <ul>
+                    <li>Founded by <b>Gireesh Kumar</b></li>
+                    <li>Trusted by hundreds of clients</li>
+                    <li>Driven by innovation and integrity</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="gk-services" id="textile">
+        <div class="gk-section-title text-center">Textile Shop</div>
+        <div class="gk-services-row">
+            <div class="gk-service-card">
+                <img src="https://img.icons8.com/ios-filled/100/232837/user-male-circle.png" alt="Men's Wear">
+                <h3>Men's Wear</h3>
+                <p>Latest trends and classic styles for men. Premium quality fabrics and ready-made garments.</p>
+            </div>
+            <div class="gk-service-card">
+                <img src="https://img.icons8.com/ios-filled/100/232837/user-female-circle.png" alt="Women's Wear">
+                <h3>Women's Wear</h3>
+                <p>Elegant and fashionable women's wear for every occasion. Custom tailoring available.</p>
+            </div>
+            <div class="gk-service-card">
+                <img src="https://img.icons8.com/ios-filled/100/232837/sofa.png" alt="Home Furnishings">
+                <h3>Home Furnishings</h3>
+                <p>Beautiful home textiles, curtains, and furnishings to enhance your living space.</p>
+            </div>
+            <div class="gk-service-card">
+                <img src="https://img.icons8.com/ios-filled/100/232837/t-shirt.png" alt="Comen's">
+                <h3>Comen's</h3>
+                <p>Comfortable and stylish clothing for all ages and preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gk-services" id="construction">
+        <div class="gk-section-title text-center">Construction Works</div>
+        <div class="gk-services-row">
+            <div class="gk-service-card">
+                <img src="https://img.icons8.com/ios-filled/100/232837/home.png" alt="Residential">
+                <h3>Residential</h3>
+                <p>Building homes with care, quality, and attention to detail, ensuring your dream home becomes a reality.</p>
+            </div>
+            <div class="gk-service-card">
+                <img src="https://img.icons8.com/ios-filled/100/232837/city-buildings.png" alt="Commercial">
+                <h3>Commercial</h3>
+                <p>From offices to retail spaces, our commercial projects are designed for functionality and style.</p>
+            </div>
+            <div class="gk-service-card">
+                <i class="fa-solid fa-hammer fa-3x mb-3" style="color:#232837;"></i>
+                <h3>Renovation</h3>
+                <p>Expert renovation and remodeling services for homes and businesses.</p>
+            </div>
+            <div class="gk-service-card">
+                <i class="fa-solid fa-paint-roller fa-3x mb-3" style="color:#232837;"></i>
+                <h3>Renovation</h3>
+                <p>Modernizing and upgrading spaces with innovative solutions and skilled craftsmanship.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gk-gallery" id="gallery">
+        <div class="gk-section-title text-center">Gallery</div>
+        <div class="gk-gallery-row">
+            <div class="gk-gallery-img">
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Project 1">
+            </div>
+            <div class="gk-gallery-img">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Project 2">
+            </div>
+            <div class="gk-gallery-img">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 3">
+            </div>
+            <div class="gk-gallery-img">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Project 4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="gk-contact" id="contact">
+        <div class="gk-section-title text-center">Contact Us</div>
+        <form class="gk-contact-form">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" rows="4" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gk-footer">
+        <div class="gk-footer-top">
+            <div class="gk-footer-col">
+                <div class="gk-footer-title">Contact Us</div>
+                <div>
+                    <i class="fa-solid fa-envelope"></i> gkgroup@mail.com<br>
+                    <i class="fa-solid fa-phone"></i> 0023 4553 759<br>
+                    <i class="fa-solid fa-at"></i> gk@goups.com
+                </div>
+            </div>
+            <div class="gk-footer-col">
+                <div class="gk-footer-title">Quick Links</div>
+                <ul class="gk-footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#textile">Textile Shop</a></li>
+                    <li><a href="#construction">Construction Works</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="gk-footer-col">
+                <div class="gk-footer-title">Follow Us</div>
+                <div class="gk-footer-social">
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" title="Sitemap"><i class="fa-solid fa-sitemap"></i></a>
+                </div>
+            </div>
+            <div class="gk-footer-col">
+                <div class="gk-footer-title">Sitemap</div>
+                <a href="#" class="gk-footer-links">View Sitemap</a>
+            </div>
+        </div>
+        <div class="gk-footer-bottom">
+            &copy; 2025 GK GROUPS | Designed by Gireesh Kumar, Palakkad, Kerala
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
