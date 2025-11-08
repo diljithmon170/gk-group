@@ -1,0 +1,526 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact {{ company_name|default:'GK Group' }}",
+    "description": "{{ meta_description|default:'Contact GK Group for premium textiles and steel products. Visit our store in Palakkad, Kerala or call us.' }}",
+    "url": "{{ request.build_absolute_uri }}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "{{ company_name|default:'GK Group' }}",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Palakkad",
+            "addressRegion": "Kerala",
+            "addressCountry": "India"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "{{ contact_phone|default:'+91 0023 4553 759' }}",
+            "contactType": "customer service",
+            "email": "{{ contact_email|default:'gkgroup@mail.com' }}",
+            "availableLanguage": ["English", "Malayalam", "Hindi"]
+        }
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="gk-hero">
+    <div class="container gk-hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="gk-hero-text">
+                    <h1 class="display-4 fw-bold mb-4">Contact {{ company_name|default:"GK Group" }}</h1>
+                    <p class="lead mb-4">Get in Touch With Us</p>
+                    <p class="mb-4">
+                        We're here to help you with all your textile and steel product needs.
+                        Visit our store, call us, or send us a message. Our friendly team is ready to assist you.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="tel:{{ contact_phone|default:'+9100234553759' }}" class="gk-hero-btn">
+                            <i class="fas fa-phone me-2"></i>Call Now
+                        </a>
+                        <a href="https://wa.me/{{ whatsapp_number|default:'+9100234553759'|slice:'1:' }}" class="gk-hero-btn" style="background: #25D366;" target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gk-hero-img" style="background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;"></div>
+</section>
+
+<!-- Contact Information Section -->
+<section class="gk-about">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">Get in Touch</h2>
+            <p class="lead text-muted">Multiple Ways to Reach Us</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Phone Contact -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-phone fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold">Call Us</h4>
+                    <p class="text-muted mb-2">For immediate assistance</p>
+                    <a href="tel:{{ contact_phone|default:'+9100234553759' }}" class="fs-5 text-decoration-none">
+                        {{ contact_phone|default:"+91 0023 4553 759" }}
+                    </a>
+                    <p class="small text-muted mt-2">Mon - Sat: 9:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+
+            <!-- Email Contact -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-envelope fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold">Email Us</h4>
+                    <p class="text-muted mb-2">Send us your inquiries</p>
+                    <a href="mailto:{{ contact_email|default:'gkgroup@mail.com' }}" class="fs-5 text-decoration-none">
+                        {{ contact_email|default:"gkgroup@mail.com" }}
+                    </a>
+                    <p class="small text-muted mt-2">We respond within 24 hours</p>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-map-marker-alt fa-2x"></i>
+                    </div>
+                    <h4 class="fw-bold">Visit Us</h4>
+                    <p class="text-muted mb-2">Our store location</p>
+                    <address class="fs-5">
+                        {{ location|default:"Palakkad, Kerala, India" }}
+                    </address>
+                    <p class="small text-muted mt-2">Convenient location with parking</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map and Contact Form Section -->
+<section class="gk-contact">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">Find Us & Get in Touch</h2>
+            <p class="lead text-muted">Visit Our Store or Send Us a Message</p>
+        </div>
+
+        <div class="row">
+            <!-- Map Section -->
+            <div class="col-lg-6 mb-4">
+                <div class="rounded-3 overflow-hidden shadow-lg" style="height: 450px;">
+                    <iframe
+                        src="https://maps.google.com/maps?q={{ map_latitude|default:'10.7867' }},{{ map_longitude|default:'76.6548' }}&z=15&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="mt-3">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination={{ map_latitude|default:'10.7867' }},{{ map_longitude|default:'76.6548' }}"
+                       class="btn btn-outline-primary w-100" target="_blank">
+                        <i class="fas fa-directions me-2"></i>Get Directions
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Form Section -->
+            <div class="col-lg-6 mb-4">
+                <div class="gk-contact-form h-100">
+                    <h4 class="mb-4">Send Us a Message</h4>
+
+                    {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <i class="fas fa-{% if message.tags == 'success' %}check-circle{% elif message.tags == 'error' %}exclamation-circle{% else %}info-circle{% endif %} me-2"></i>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <form action="{% url 'contact' %}" method="POST" id="contactForm">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Your Name *</label>
+                                <input type="text" class="form-control {% if form.name.errors %}is-invalid{% endif %}"
+                                       id="name" name="name" value="{{ form.name.value|default:'' }}"
+                                       placeholder="Enter your full name" required>
+                                {% if form.name.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.name.errors %}{{ error }}{% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                                       id="email" name="email" value="{{ form.email.value|default:'' }}"
+                                       placeholder="your.email@example.com" required>
+                                {% if form.email.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}{{ error }}{% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control {% if form.phone.errors %}is-invalid{% endif %}"
+                                       id="phone" name="phone" value="{{ form.phone.value|default:'' }}"
+                                       placeholder="+91 98765 43210">
+                                {% if form.phone.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.phone.errors %}{{ error }}{% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control {% if form.subject.errors %}is-invalid{% endif %}"
+                                       id="subject" name="subject" value="{{ form.subject.value|default:'' }}"
+                                       placeholder="What is this regarding?">
+                                {% if form.subject.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.subject.errors %}{{ error }}{% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="interest_area" class="form-label">I'm interested in</label>
+                            <select class="form-control {% if form.interest_area.errors %}is-invalid{% endif %}"
+                                    id="interest_area" name="interest_area">
+                                <option value="general" {% if form.interest_area.value == 'general' %}selected{% endif %}>General Inquiry</option>
+                                <option value="gk_textiles" {% if form.interest_area.value == 'gk_textiles' %}selected{% endif %}>GK Textiles</option>
+                                <option value="gk_steels" {% if form.interest_area.value == 'gk_steels' %}selected{% endif %}>GK Steels</option>
+                                <option value="partnership" {% if form.interest_area.value == 'partnership' %}selected{% endif %}>Partnership</option>
+                                <option value="feedback" {% if form.interest_area.value == 'feedback' %}selected{% endif %}>Feedback</option>
+                            </select>
+                            {% if form.interest_area.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.interest_area.errors %}{{ error }}{% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Your Message *</label>
+                            <textarea class="form-control {% if form.message.errors %}is-invalid{% endif %}"
+                                      id="message" name="message" rows="5" required
+                                      placeholder="Tell us about your requirements or questions...">{{ form.message.value|default:'' }}</textarea>
+                            {% if form.message.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.message.errors %}{{ error }}{% endfor %}
+                            </div>
+                            {% endif %}
+                            <small class="text-muted">Minimum 10 characters</small>
+                        </div>
+                        <button type="submit" class="w-100" id="submitBtn">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Business Hours Section -->
+<section class="gk-business">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">Business Hours</h2>
+            <p class="lead text-muted">When We're Available to Serve You</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-8 mx-auto">
+                <div class="gk-business-card text-center">
+                    <h4 class="mb-4">Store Operating Hours</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                <span class="fw-bold">Monday - Saturday</span>
+                                <span class="text-success">9:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <span class="fw-bold">Sunday</span>
+                                <span class="text-warning">10:00 AM - 6:00 PM</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                <span class="fw-bold">Phone Support</span>
+                                <span class="text-success">9:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center py-2">
+                                <span class="fw-bold">Email Support</span>
+                                <span class="text-info">24/7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Note:</strong> We are closed on major holidays. Please call ahead to confirm availability.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="gk-about">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">Frequently Asked Questions</h2>
+            <p class="lead text-muted">Quick Answers to Common Questions</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Do you offer home delivery for your products?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we offer home delivery services within Palakkad city limits for bulk orders. For smaller orders, please visit our store. Delivery charges may apply based on the order size and location.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Do you provide custom tailoring services?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, GK Textiles provides custom tailoring services for all types of garments. Our experienced tailors can create custom outfits based on your measurements and preferences. Turnaround time varies depending on the complexity of the design.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Can I get technical guidance for construction materials?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Absolutely! Our experienced team at GK Steels provides technical guidance to help you choose the right materials for your construction project. We can assist with material specifications, quantity calculations, and best practices.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Do you offer bulk discounts for contractors?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we offer competitive bulk pricing for contractors, builders, and businesses. Please contact us directly to discuss your requirements and get a customized quote based on your order volume and frequency.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                What payment methods do you accept?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We accept cash, UPI, debit/credit cards, and bank transfers. For bulk orders, we also offer credit facilities for approved customers. Please speak to our staff for more details about payment options.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Emergency Contact Section -->
+<section class="py-4" style="background: #dc3545; color: white;">
+    <div class="container text-center">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h5 class="mb-2 mb-md-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Need urgent assistance with construction materials?
+                </h5>
+                <p class="mb-0">Call our emergency hotline for immediate support</p>
+            </div>
+            <div class="col-md-4">
+                <a href="tel:{{ contact_phone|default:'+9100234553759' }}" class="btn btn-light w-100">
+                    <i class="fas fa-phone-alt me-2"></i>Emergency Hotline
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Contact form handling with AJAX
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            const formData = new FormData(this);
+
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            submitBtn.disabled = true;
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    const alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert alert-success alert-dismissible fade show';
+                    alertDiv.innerHTML = `
+                        <i class="fas fa-check-circle me-2"></i>${data.message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    `;
+
+                    this.parentNode.insertBefore(alertDiv, this);
+                    this.reset();
+
+                    // Scroll to top of form to show message
+                    this.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Remove alert after 5 seconds
+                    setTimeout(() => {
+                        if (alertDiv.parentNode) {
+                            alertDiv.remove();
+                        }
+                    }, 5000);
+                } else {
+                    // Show error message
+                    const alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert alert-danger alert-dismissible fade show';
+                    alertDiv.innerHTML = `
+                        <i class="fas fa-exclamation-circle me-2"></i>${data.message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    `;
+
+                    this.parentNode.insertBefore(alertDiv, this);
+
+                    // Show field-specific errors if any
+                    if (data.errors) {
+                        for (const [field, errors] of Object.entries(data.errors)) {
+                            const fieldElement = this.querySelector(`[name="${field}"]`);
+                            if (fieldElement) {
+                                fieldElement.classList.add('is-invalid');
+                                const feedbackDiv = fieldElement.parentNode.querySelector('.invalid-feedback');
+                                if (feedbackDiv) {
+                                    feedbackDiv.textContent = errors.join(', ');
+                                } else {
+                                    const newFeedbackDiv = document.createElement('div');
+                                    newFeedbackDiv.className = 'invalid-feedback';
+                                    newFeedbackDiv.textContent = errors.join(', ');
+                                    fieldElement.parentNode.appendChild(newFeedbackDiv);
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-danger alert-dismissible fade show';
+                alertDiv.innerHTML = `
+                    <i class="fas fa-exclamation-circle me-2"></i>Sorry, there was an error sending your message. Please try again or call us directly.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+
+                this.parentNode.insertBefore(alertDiv, this);
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    }
+
+    // Remove invalid class when user starts typing
+    const formInputs = contactForm.querySelectorAll('input, select, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            this.classList.remove('is-invalid');
+            const feedbackDiv = this.parentNode.querySelector('.invalid-feedback');
+            if (feedbackDiv) {
+                feedbackDiv.remove();
+            }
+        });
+    });
+
+    // Smooth scroll for FAQ accordion
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setTimeout(() => {
+                this.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        });
+    });
+});
+</script>
+{% endblock %}
