@@ -1,210 +1,492 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GK GROUPS | Textile Shop & Construction Works</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg gk-navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <div class="gk-logo"><span>GK</span></div>
-                GK GROUPS
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#textile">TEXTILE SHOP</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#construction">CONSTRUCTION WORKS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">CONTACT US</a></li>
-                </ul>
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block meta_description %}{{ meta_description }}{% endblock %}
+
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ company_name|default:'GK Group' }}",
+    "description": "{{ meta_description|default:'Premium textiles and steel products provider in Palakkad, Kerala' }}",
+    "url": "{{ request.build_absolute_uri }}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ request.build_absolute_uri }}?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="gk-hero">
+    <div class="container gk-hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="gk-hero-text">
+                    <h1 class="display-4 fw-bold mb-4">{{ hero_title|default:"Welcome to GK Group" }}</h1>
+                    <p class="lead mb-4">{{ hero_subtitle|default:"Quality You Trust. Service with Commitment." }}</p>
+                    <p class="mb-4">
+                        A trusted leader in <strong>Premium Textiles</strong> and <strong>Steel Products</strong> industries.
+                        We deliver quality, innovation, and reliability in every project and product.
+                        Discover our legacy of excellence in Palakkad and beyond.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{% url 'gk_textiles' %}" class="gk-hero-btn">
+                            <i class="fas fa-tshirt me-2"></i>Explore Textiles
+                        </a>
+                        <a href="{% url 'gk_steels' %}" class="gk-hero-btn" style="background: var(--primary-color);">
+                            <i class="fas fa-industry me-2"></i>Explore Steels
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="gk-subtitle">Gireesh Kumar, Palakkad, Kerala</div>
+    </div>
+    <div class="gk-hero-img"></div>
+</section>
 
-    <!-- Hero Banner -->
-    <section class="gk-hero">
-        <div class="container gk-hero-content">
-            <h1>Welcome to GK Groups</h1>
-            <p>
-                A trusted leader in <b>Textile</b> and <b>Construction</b> industries. We deliver quality, innovation, and reliability in every project and product. Discover our legacy of excellence in Palakkad and beyond.
-            </p>
-            <a href="#about" class="gk-hero-btn">Explore More</a>
+<!-- About Section -->
+<section class="gk-about">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">About {{ company_name|default:"GK Group" }}</h2>
+            <p class="lead text-muted">Building Trust, Delivering Excellence</p>
         </div>
-        <div class="gk-hero-img"></div>
-    </section>
 
-    <!-- About Section -->
-    <section class="gk-about" id="about">
-        <div class="gk-section-title text-center">About GK Groups</div>
         <div class="gk-about-content">
-            <div class="gk-about-img text-center">
-                <img src="{% static 'img/founder.jpg' %}" 
-                     alt="Gireesh Kumar - Founder of GK Groups" class="img-fluid">
-                <div style="font-weight:700; font-size:1.15em; margin-top:10px;">Gireesh Kumar</div>
-                <div style="color:#888;">Founder & Owner, GK Groups</div>
+            <div class="gk-about-img">
+                <img src="{% static 'img/founder.jpg' %}"
+                     alt="{{ founder_name|default:'Gireesh Kumar' }} - Founder of {{ company_name|default:'GK Group' }}"
+                     class="img-fluid rounded-3 shadow-lg">
+                <div class="text-center mt-3">
+                    <h5 class="fw-bold mb-1">{{ founder_name|default:"Gireesh Kumar" }}</h5>
+                    <p class="text-muted mb-0">Founder & Owner</p>
+                    <small class="text-muted">{{ company_name|default:"GK Group" }}</small>
+                </div>
             </div>
+
             <div class="gk-about-text">
-                <p>
-                    <b>GK Groups</b> is a diversified business group with a strong presence in the Textile and Construction sectors. With decades of experience, we have earned a reputation for reliability, quality, and customer satisfaction. Our textile division offers a wide range of fabrics and garments, while our construction arm delivers residential, commercial, and industrial projects with excellence.
+                <h3 class="mb-4" style="color: var(--secondary-color);">Our Story</h3>
+                <p class="mb-4">
+                    <strong>{{ company_name|default:"GK Group" }}</strong> is a diversified business group with a strong presence in the Textile and Steel sectors.
+                    With decades of experience, we have earned a reputation for reliability, quality, and customer satisfaction.
+                    Our textile division offers a wide range of fabrics and garments, while our steel division provides premium construction materials.
                 </p>
-                <ul>
-                    <li>Founded by <b>Gireesh Kumar</b></li>
-                    <li>Trusted by hundreds of clients</li>
-                    <li>Driven by innovation and integrity</li>
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success me-3 mt-1" style="font-size: 1.2rem;"></i>
+                            <div>
+                                <h6 class="fw-bold">Founded by {{ founder_name|default:"Gireesh Kumar" }}</h6>
+                                <p class="text-muted mb-0">Visionary leadership with decades of experience</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success me-3 mt-1" style="font-size: 1.2rem;"></i>
+                            <div>
+                                <h6 class="fw-bold">Trusted by Hundreds</h6>
+                                <p class="text-muted mb-0">Satisfied customers across Palakkad and Kerala</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success me-3 mt-1" style="font-size: 1.2rem;"></i>
+                            <div>
+                                <h6 class="fw-bold">Quality Assurance</h6>
+                                <p class="text-muted mb-0">Premium products with guaranteed quality</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success me-3 mt-1" style="font-size: 1.2rem;"></i>
+                            <div>
+                                <h6 class="fw-bold">Customer First</h6>
+                                <p class="text-muted mb-0">Exceptional service and support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="{% url 'about' %}" class="gk-business-btn">
+                        Learn More About Us <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Business Divisions Section -->
+<section class="gk-business">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">Our Business Divisions</h2>
+            <p class="lead text-muted">Excellence in Every Sector We Serve</p>
+        </div>
+
+        <div class="gk-business-row">
+            <!-- GK Textiles Card -->
+            <div class="gk-business-card">
+                <div class="mb-4">
+                    <i class="fas fa-tshirt fa-3x" style="color: var(--secondary-color);"></i>
+                </div>
+                <h3>GK Textiles</h3>
+                <p class="mb-4">
+                    Premium quality textiles, traditional wear, modern outfits, fabrics, and family clothing collections.
+                    Discover our extensive range of elegant and comfortable clothing for every occasion.
+                </p>
+                <ul class="list-unstyled mb-4 text-start">
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Traditional & Modern Wear</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Premium Fabrics & Sarees</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom Tailoring Available</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Family Collections</li>
                 </ul>
+                <a href="{% url 'gk_textiles' %}" class="gk-business-btn">
+                    Explore Textiles <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <!-- GK Steels Card -->
+            <div class="gk-business-card">
+                <div class="mb-4">
+                    <i class="fas fa-industry fa-3x" style="color: var(--secondary-color);"></i>
+                </div>
+                <h3>GK Steels</h3>
+                <p class="mb-4">
+                    High-quality construction steel, pipes, rods, and hardware materials for all your building needs.
+                    Your trusted partner for construction projects with premium quality materials.
+                </p>
+                <ul class="list-unstyled mb-4 text-start">
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Construction Steel</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Pipes & Rods</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Hardware Products</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Building Materials</li>
+                </ul>
+                <a href="{% url 'gk_steels' %}" class="gk-business-btn">
+                    Explore Steels <i class="fas fa-arrow-right ms-1"></i>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Services Section -->
-    <section class="gk-services" id="textile">
-        <div class="gk-section-title text-center">Textile Shop</div>
-        <div class="gk-services-row">
-            <div class="gk-service-card">
-                <img src="https://img.icons8.com/ios-filled/100/232837/user-male-circle.png" alt="Men's Wear">
-                <h3>Men's Wear</h3>
-                <p>Latest trends and classic styles for men. Premium quality fabrics and ready-made garments.</p>
-            </div>
-            <div class="gk-service-card">
-                <img src="https://img.icons8.com/ios-filled/100/232837/user-female-circle.png" alt="Women's Wear">
-                <h3>Women's Wear</h3>
-                <p>Elegant and fashionable women's wear for every occasion. Custom tailoring available.</p>
-            </div>
-            <div class="gk-service-card">
-                <img src="https://img.icons8.com/ios-filled/100/232837/sofa.png" alt="Home Furnishings">
-                <h3>Home Furnishings</h3>
-                <p>Beautiful home textiles, curtains, and furnishings to enhance your living space.</p>
-            </div>
-            <div class="gk-service-card">
-                <img src="https://img.icons8.com/ios-filled/100/232837/t-shirt.png" alt="Comen's">
-                <h3>Comen's</h3>
-                <p>Comfortable and stylish clothing for all ages and preferences.</p>
-            </div>
+<!-- Featured Gallery Section -->
+<section class="gk-gallery">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">Our Gallery</h2>
+            <p class="lead text-muted">Showcase of Our Products and Projects</p>
         </div>
-    </section>
 
-    <section class="gk-services" id="construction">
-        <div class="gk-section-title text-center">Construction Works</div>
-        <div class="gk-services-row">
-            <div class="gk-service-card">
-                <img src="https://img.icons8.com/ios-filled/100/232837/home.png" alt="Residential">
-                <h3>Residential</h3>
-                <p>Building homes with care, quality, and attention to detail, ensuring your dream home becomes a reality.</p>
-            </div>
-            <div class="gk-service-card">
-                <img src="https://img.icons8.com/ios-filled/100/232837/city-buildings.png" alt="Commercial">
-                <h3>Commercial</h3>
-                <p>From offices to retail spaces, our commercial projects are designed for functionality and style.</p>
-            </div>
-            <div class="gk-service-card">
-                <i class="fa-solid fa-hammer fa-3x mb-3" style="color:#232837;"></i>
-                <h3>Renovation</h3>
-                <p>Expert renovation and remodeling services for homes and businesses.</p>
-            </div>
-            <div class="gk-service-card">
-                <i class="fa-solid fa-paint-roller fa-3x mb-3" style="color:#232837;"></i>
-                <h3>Renovation</h3>
-                <p>Modernizing and upgrading spaces with innovative solutions and skilled craftsmanship.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gk-gallery" id="gallery">
-        <div class="gk-section-title text-center">Gallery</div>
         <div class="gk-gallery-row">
             <div class="gk-gallery-img">
-                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Project 1">
-            </div>
-            <div class="gk-gallery-img">
-                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Project 2">
-            </div>
-            <div class="gk-gallery-img">
-                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 3">
-            </div>
-            <div class="gk-gallery-img">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Project 4">
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="gk-contact" id="contact">
-        <div class="gk-section-title text-center">Contact Us</div>
-        <form class="gk-contact-form">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea id="message" rows="4" class="form-control" required></textarea>
-            </div>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer class="gk-footer">
-        <div class="gk-footer-top">
-            <div class="gk-footer-col">
-                <div class="gk-footer-title">Contact Us</div>
-                <div>
-                    <i class="fa-solid fa-envelope"></i> gkgroup@mail.com<br>
-                    <i class="fa-solid fa-phone"></i> 0023 4553 759<br>
-                    <i class="fa-solid fa-at"></i> gk@goups.com
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+                     alt="Premium Textile Collection"
+                     loading="lazy">
+                <div class="text-center mt-2">
+                    <small class="text-muted">Premium Textiles</small>
                 </div>
             </div>
-            <div class="gk-footer-col">
-                <div class="gk-footer-title">Quick Links</div>
-                <ul class="gk-footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#textile">Textile Shop</a></li>
-                    <li><a href="#construction">Construction Works</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="gk-footer-col">
-                <div class="gk-footer-title">Follow Us</div>
-                <div class="gk-footer-social">
-                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#" title="Sitemap"><i class="fa-solid fa-sitemap"></i></a>
+            <div class="gk-gallery-img">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+                     alt="Steel Products"
+                     loading="lazy">
+                <div class="text-center mt-2">
+                    <small class="text-muted">Quality Steel</small>
                 </div>
             </div>
-            <div class="gk-footer-col">
-                <div class="gk-footer-title">Sitemap</div>
-                <a href="#" class="gk-footer-links">View Sitemap</a>
+            <div class="gk-gallery-img">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop"
+                     alt="Store Interior"
+                     loading="lazy">
+                <div class="text-center mt-2">
+                    <small class="text-muted">Our Store</small>
+                </div>
+            </div>
+            <div class="gk-gallery-img">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+                     alt="Happy Customers"
+                     loading="lazy">
+                <div class="text-center mt-2">
+                    <small class="text-muted">Customer Satisfaction</small>
+                </div>
             </div>
         </div>
-        <div class="gk-footer-bottom">
-            &copy; 2025 GK GROUPS | Designed by Gireesh Kumar, Palakkad, Kerala
+
+        <div class="text-center mt-4">
+            <p class="text-muted">
+                <i class="fas fa-camera me-2"></i>
+                Visit our stores to explore our complete collection
+            </p>
         </div>
-    </footer>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-5" style="background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color)); color: white;">
+    <div class="container text-center">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-4">Ready to Experience Quality?</h2>
+                <p class="lead mb-4">
+                    Visit our stores in Palakkad or contact us for premium textiles and steel products.
+                    We're here to serve you with the best quality and exceptional service.
+                </p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'contact' %}" class="gk-hero-btn">
+                        <i class="fas fa-envelope me-2"></i>Get in Touch
+                    </a>
+                    <a href="tel:{{ contact_phone|default:'+9100234553759' }}" class="gk-hero-btn" style="background: #28a745;">
+                        <i class="fas fa-phone me-2"></i>Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Contact Section -->
+<section class="gk-contact">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="gk-section-title">Get In Touch</h2>
+            <p class="lead text-muted">We'd Love to Hear From You</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="gk-contact-info h-100">
+                    <h4 class="mb-4">Contact Information</h4>
+
+                    <div class="gk-contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h6 class="mb-1">Address</h6>
+                            <p class="mb-0">{{ location|default:"Palakkad, Kerala, India" }}</p>
+                        </div>
+                    </div>
+
+                    <div class="gk-contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h6 class="mb-1">Phone</h6>
+                            <p class="mb-0">{{ contact_phone|default:"+91 0023 4553 759" }}</p>
+                        </div>
+                    </div>
+
+                    <div class="gk-contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h6 class="mb-1">Email</h6>
+                            <p class="mb-0">{{ contact_email|default:"gkgroup@mail.com" }}</p>
+                        </div>
+                    </div>
+
+                    <div class="gk-contact-info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h6 class="mb-1">Business Hours</h6>
+                            <p class="mb-0">Mon - Sat: 9:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="gk-contact-form">
+                    <h4 class="mb-4">Send us a Message</h4>
+                    <form action="{% url 'contact' %}" method="POST" id="homeContactForm">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Your Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required
+                                       placeholder="Enter your full name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required
+                                       placeholder="your.email@example.com">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone"
+                                       placeholder="+91 98765 43210">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject"
+                                       placeholder="What is this regarding?">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="interest_area" class="form-label">I'm interested in</label>
+                            <select class="form-control" id="interest_area" name="interest_area">
+                                <option value="general">General Inquiry</option>
+                                <option value="gk_textiles">GK Textiles</option>
+                                <option value="gk_steels">GK Steels</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message *</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required
+                                      placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Home contact form handling
+    const homeContactForm = document.getElementById('homeContactForm');
+    if (homeContactForm) {
+        homeContactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+
+            // Show loading state
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            submitButton.disabled = true;
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    this.insertAdjacentHTML('beforebegin',
+                        `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>${data.message}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>`
+                    );
+                    this.reset();
+                } else {
+                    // Show error message
+                    this.insertAdjacentHTML('beforebegin',
+                        `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i>${data.message}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>`
+                    );
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                this.insertAdjacentHTML('beforebegin',
+                    `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>Sorry, there was an error sending your message. Please try again.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>`
+                );
+            })
+            .finally(() => {
+                // Reset button state
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            });
+        });
+    }
+
+    // Newsletter form handling
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            submitButton.disabled = true;
+
+            fetch('/api/newsletter/', {
+                method: 'POST',
+                body: JSON.stringify({ email: formData.get('email') }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageDiv = document.getElementById('newsletterMessage');
+                if (data.success) {
+                    messageDiv.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>${data.message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>`;
+                    this.reset();
+                } else {
+                    messageDiv.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>${data.message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const messageDiv = document.getElementById('newsletterMessage');
+                messageDiv.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>Sorry, there was an error. Please try again.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>`;
+            })
+            .finally(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            });
+        });
+    }
+});
+</script>
+{% endblock %}
