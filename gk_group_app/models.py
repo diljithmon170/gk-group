@@ -35,7 +35,6 @@ class ContactMessage(models.Model):
         help_text="Optional phone number"
     )
     message = models.TextField(
-        min_length=10,
         max_length=2000,
         help_text="Your message (10-2000 characters)"
     )
